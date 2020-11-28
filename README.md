@@ -1,6 +1,6 @@
 # Gato Roboto Themes
 
-[Gato Roboto](https://gatoroboto.com) inspired macOS terminal themes
+[Gato Roboto](https://gatoroboto.com) inspired themes for Terminal.app
 
 ![Preview of all themes](images/preview.gif)
 
@@ -25,6 +25,12 @@ pipenv install
 
   ```zsh
   gr random
+  ```
+
+- Demo all the themes:
+
+  ```zsh
+  gr demo
   ```
 
 ## Themes
