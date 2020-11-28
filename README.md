@@ -4,6 +4,15 @@
 
 ![Preview of all themes](images/preview.gif)
 
+## Installation
+
+```zsh
+git clone git@github.com:jbmorley/gato-roboto-themes.git
+cd gato-roboto-themes
+pipenv install
+gr install
+```
+
 ## Themes
 
 ### Bark
