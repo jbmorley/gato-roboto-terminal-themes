@@ -4,6 +4,22 @@ Gato Roboto inspired macOS terminal themes
 
 ## Themes
 
+### Bark
+
+![Bark screenshot](images/bark.png)
+
+```zsh
+gr set bark
+```
+
+### Chewed Gum
+
+![Chewed Gum screenshot](images/chewed-gum.png)
+
+```zsh
+gr set chewed-gum
+```
+
 ### Goop
 
 ![Goop screenshot](images/goop.png)
