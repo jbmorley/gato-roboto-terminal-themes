@@ -1,6 +1,6 @@
 # Gato Roboto Themes
 
-Gato Roboto inspired macOS terminal themes
+[Gato Roboto](https://gatoroboto.com) inspired macOS terminal themes
 
 ![Preview of all themes](images/preview.gif)
 
