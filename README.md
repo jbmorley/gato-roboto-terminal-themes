@@ -13,6 +13,20 @@ pipenv install
 ./gr install
 ```
 
+## Usage
+
+- Set a theme (e.g., `tamagato`):
+
+  ```zsh
+  gr set tamagato
+  ```
+
+- Set a random theme:
+
+  ```zsh
+  gr random
+  ```
+
 ## Themes
 
 ### Bark
