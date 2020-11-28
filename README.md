@@ -6,28 +6,32 @@ Gato Roboto inspired macOS terminal themes
 
 ### Goop
 
+![Goop screenshot](images/goop.png)
+
 ```zsh
 gr set goop
 ```
 
+### Port
 
+![Port screenshot](images/port.png)
 
-![Goop screenshot](images/goop.png)
+```zsh
+gr set port
+```
 
 ### Tamagato
+
+![Tamagato screenshot](images/tamagato.png)
 
 ```zsh
 gr set tamagato
 ```
 
-![Virtual Cat screenshot](images/tamagato.png)
-
 ### Virtual Cat
+
+![Virtual Cat screenshot](images/virtual-cat.png)
 
 ```zsh
 gr set virtual-cat
 ```
-
-
-
-![Virtual Cat screenshot](images/virtual-cat.png)
