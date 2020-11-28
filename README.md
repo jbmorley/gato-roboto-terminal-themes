@@ -2,6 +2,8 @@
 
 Gato Roboto inspired macOS terminal themes
 
+![Preview of all themes](images/preview.gif)
+
 ## Themes
 
 ### Bark
