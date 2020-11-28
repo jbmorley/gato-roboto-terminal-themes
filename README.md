@@ -10,7 +10,7 @@
 git clone git@github.com:jbmorley/gato-roboto-themes.git
 cd gato-roboto-themes
 pipenv install
-gr install
+./gr install
 ```
 
 ## Themes
