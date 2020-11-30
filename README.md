@@ -2,7 +2,7 @@
 
 [Gato Roboto](https://gatoroboto.com) inspired themes for Terminal.app
 
-![Preview of all themes](images/preview.gif)
+![Preview of all themes](previews/preview-light-1s.gif)
 
 ## Installation
 
