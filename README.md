@@ -1,4 +1,4 @@
-# Gato Roboto Themes
+# Gato Roboto Terminal Themes
 
 [Gato Roboto](https://gatoroboto.com) inspired themes for Terminal.app
 
