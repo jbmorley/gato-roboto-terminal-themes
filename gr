@@ -1,8 +1,123 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-set -e
+import argparse
+import collections
+import glob
+import os
+import random
+import subprocess
+import sys
+import time
 
-directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-name=`basename $0`
-cd "${directory}"
-pipenv run python3 -u "$name.py" $@
+ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+PROFILES_DIRECTORY = os.path.join(ROOT_DIRECTORY, "profiles")
+
+SCRIPT = """
+tell application "Terminal"
+    set current settings of window 1 to settings set "%s"
+end tell
+"""
+
+PROFILES = {
+    "bark": "GR Bark",
+    "chewed-gum": "GR Chewed Gum",
+    "coffee-stain": "GR Coffee Stain",
+    "default": "GR Default",
+    "goop": "GR Goop",
+    "grape": "GR Grape",
+    "gris": "GR Gris",
+    "meowtrix": "GR Meowtrix",
+    "nicotine": "GR Nicotine",
+    "port": "GR Port",
+    "soft": "GR Soft",
+    "starboard": "GR Starboard",
+    "swamp-matcha": "GR Swamp Matcha",
+    "tamagato": "GR Tamagato",
+    "urine": "GR Urine",
+    "virtual-cat": "GR Virtual Cat",
+}
+
+COMMANDS = {}
+
+
+Command = collections.namedtuple("Command", ["function", "help"])
+
+
+class Chdir(object):
+
+    def __init__(self, path):
+        self.path = os.path.abspath(path)
+
+    def __enter__(self):
+        self.pwd = os.getcwd()
+        os.chdir(self.path)
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        os.chdir(self.pwd)
+
+
+def set_profile(profile):
+    subprocess.check_call(["osascript", "-e", SCRIPT % PROFILES[profile]])
+
+
+def command(name, help):
+    def inner(f):
+        COMMANDS[name] = Command(function=f, help=help)
+        return f
+    return inner
+
+
+@command("install", help="install the themes")
+def command_install(parser):
+    def command(options):
+        with Chdir(PROFILES_DIRECTORY):
+            profiles = glob.glob("*.terminal")
+            subprocess.check_call(["open"] + profiles)
+    return command
+
+
+@command("demo", help="cycle through all themes")
+def command_demo(parser):
+    parser.add_argument("--sleep", "-s", type=int, default=2, help="length of time to sleep")
+    def command(options):
+        while True:
+            for profile in PROFILES.keys():
+                set_profile(profile)
+                columns = os.get_terminal_size().columns
+                sys.stdout.write(f"\r".ljust(columns))
+                sys.stdout.write(f"\rkiki % gr set {profile} ")
+                time.sleep(options.sleep)
+    return command
+
+
+@command("random", help="set a random theme")
+def command_random(parser):
+    def command(options):
+        theme = random.choice(list(PROFILES.keys()))
+        set_profile(theme)
+    return command
+
+
+@command("set", help="set a theme")
+def command_set(parser):
+    parser.add_argument("theme", choices=PROFILES.keys())
+    def command(options):
+        set_profile(options.theme)
+    return command
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(help="command to run")
+    for name, command in COMMANDS.items():
+        subparser = subparsers.add_parser(name, help=command.help)
+        subparser.set_defaults(fn=command.function(subparser))
+    options = parser.parse_args()
+    if 'fn' not in options:
+        exit("No command specified.")
+    options.fn(options)
+
+
+if __name__ == '__main__':
+    main()

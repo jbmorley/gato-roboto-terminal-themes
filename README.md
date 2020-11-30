@@ -9,11 +9,16 @@
 ```zsh
 git clone git@github.com:jbmorley/gato-roboto-themes.git
 cd gato-roboto-themes
-pipenv install
 ./gr install
 ```
 
 ## Usage
+
+- Install the themes:
+
+  ```zsh
+  gr install
+  ```
 
 - Set a theme (e.g., `tamagato`):
 
